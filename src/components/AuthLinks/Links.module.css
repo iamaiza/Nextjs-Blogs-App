@@ -1,0 +1,10 @@
+.line {
+    background-color: var(--default-text);
+    height: 2px;
+}
+
+.responsive_menu {
+    top: 100px;
+    background-color: var(--default-bg);
+    height: calc(100vh - 100px);
+}
