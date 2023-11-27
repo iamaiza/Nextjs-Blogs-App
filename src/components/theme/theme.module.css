@@ -1,0 +1,10 @@
+.theme {
+    padding-left: 0.15rem;
+    padding-right: o.15rem;
+}
+
+.ball {
+    background-color: var(--default-bg);
+    width: 15px;
+    height: 15px;
+}

@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --default-bg: #fff;
+    --default-text: #000;
+    --light-bg: #f0f0f0;
+    --light-text: #626262
+}
+
+.dark {
+    --default-bg: #0f172a;
+    --default-text: #ddd;
+    --light-bg: #1f273a;
+    --light-text: #a6a6a6
+}
+
+.main-container {
+    background-color: var(--default-bg);
+    color: var(--default-text);
+}
+
+.quill > .ql-container > .ql-editor.ql-blank::before {
+    font-size: 28px;
+    color: #b3b3b1;
+}
