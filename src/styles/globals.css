@@ -28,4 +28,12 @@
 .quill > .ql-container > .ql-editor p {
     font-size: 18px;
     background-color: transparent;
+    color: var(--default-text);
+
+}
+
+@media screen and (max-width: 350px) {
+    .quill > .ql-container > .ql-editor.ql-blank::before {
+        font-size: 25px;
+    } 
 }

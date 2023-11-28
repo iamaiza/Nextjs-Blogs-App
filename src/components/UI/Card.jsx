@@ -16,7 +16,7 @@ const Card = (props) => {
         <figure className="flex-1 h-[350px] relative max-xl:hidden">
           <Image
             className="object-contain"
-            src={"/images" + post.img}
+            src={post?.img.startsWith("http") ? post.img : "/images" + post.img}
             alt={post.title}
             fill
           />
