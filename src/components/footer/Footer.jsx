@@ -24,22 +24,22 @@ const Footer = () => {
           <span className='font-bold'>Links</span>
           <Link href='/'>Home</Link>
           <Link href='/'>Blog</Link>
-          <Link href='/'>About</Link>
-          <Link href='/'>Contact</Link>
+          <Link href='/about'>About</Link>
+          <Link href='/contact'>Contact</Link>
         </div>
         <div className='flex flex-col gap-2.5 font-light'>
           <span className='font-bold'>Tags</span>
-          <Link href='/'>Style</Link>
-          <Link href='/'>Fashion</Link>
-          <Link href='/'>Coding</Link>
-          <Link href='/'>Travel</Link>
+          <Link href='/blog?category=style'>Style</Link>
+          <Link href='/blog?category=fashion'>Fashion</Link>
+          <Link href='/blog?category=coding'>Coding</Link>
+          <Link href='/blog?category=travel'>Travel</Link>
         </div>
         <div className='flex flex-col gap-2.5 font-light'>
           <span className='font-bold'>Social</span>
-          <Link href='/'>Facebook</Link>
-          <Link href='/'>Instagram</Link>
-          <Link href='/'>Tiktok</Link>
-          <Link href='/'>Youtube</Link>
+          <Link href='http://www.facebook.com' target='_blank'>Facebook</Link>
+          <Link href='http://www.instagram.com' target='_blank'>Instagram</Link>
+          <Link href='http://www.tiktok.com' target='_blank'>Tiktok</Link>
+          <Link href='http://www.youtube.com' target='_blank'>Youtube</Link>
         </div>
       </div>
     </footer>
