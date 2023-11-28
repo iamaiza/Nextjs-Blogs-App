@@ -12,6 +12,7 @@ import {
 } from "firebase/storage";
 import { app } from "@/utils/firebase";
 import { useSession } from "next-auth/react";
+import { striphtML } from "@/utils/domParser";
 
 const QuillEitor = dynamic(() => import("react-quill"), { ssr: false });
 const storage = getStorage(app);
@@ -23,6 +24,7 @@ const CreatePostPage = () => {
   const [file, setFile] = useState(null);
   const [media, setMedia] = useState("");
   const [title, setTitle] = useState("");
+  const [category, setCategory] = useState("");
 
   useEffect(() => {
     file && upload();
@@ -80,6 +82,8 @@ const CreatePostPage = () => {
       .replace(/^-+|-+$/g, "");
   };
 
+  const description = striphtML(value);
+
   const postPublishHandler = async (e) => {
     e.preventDefault();
     try {
@@ -91,43 +95,52 @@ const CreatePostPage = () => {
         body: JSON.stringify({
           title,
           slug: slugify(title),
-          desc: value,
+          desc: description,
           img: media,
-          catSlug: "style",
+          catSlug: category || "style",
         }),
       });
 
-      if(res.ok) {
-        console.log("Success!")
+      if (res.ok) {
+        console.log("Success!");
         const data = await res.json();
         console.log(data);
       } else {
         console.log(res.statusText);
       }
-
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
   };
 
   return (
     <div>
       <input
-        className="bg-transparent mt-16 p-[50px] text-[64px] w-full outline-none placeholder:text-[#b3b3b1]"
+        className="bg-transparent mt-16 max-[450px]:px-0 p-[50px] text-2xl sm:text-[64px] w-full outline-none placeholder:text-[#b3b3b1]"
         placeholder="Title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
-      {/* TODO: ADD CATEGORY */}
-      <div className="flex flex-col gap-5 h-[700px] relative mt-8">
+      <div className="max-w-[200px] w-9/12">
+        <label className="block mb-2 text-xl">Category</label>
+        <select className="w-full text-black p-1.5 outline-none" value={category} onChange={e => setCategory(e.target.value)}>
+          <option value="style">Style</option>
+          <option value="fashion">Fashion</option>
+          <option value="food">Food</option>
+          <option value="travel">Travel</option>
+          <option value="culture">Culture</option>
+          <option value="coding">Coding</option>
+        </select>
+      </div>
+      <div className="flex flex-col gap-5 max-[350px]:gap-24 h-[700px] relative mt-8">
         <button
-          className="w-9 h-9 flex items-center justify-center rounded-full border border-[#ddd]"
+          className="max-[350px]:w-10 max-[350px]:h-10 w-9 h-9 flex items-center p-3 justify-center rounded-full border border-[#ddd]"
           onClick={showButtonsHandler}
         >
           <Image src="/images/plus.png" alt="add" width={16} height={16} />
         </button>
         {show && (
-          <div className="flex items-center gap-5 absolute z-10 left-28">
+          <div className="flex items-center gap-5 absolute z-10 left-28 max-[350px]:left-0 max-[350px]:mt-14">
             <input
               className="hidden"
               type="file"
@@ -183,3 +196,4 @@ const CreatePostPage = () => {
 };
 
 export default CreatePostPage;
+

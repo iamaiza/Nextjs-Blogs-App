@@ -10,7 +10,7 @@ const SingleBlogPage = () => {
   const [post, setPost] = useState();
 
   useEffect(() => {
-    if(slug) getSinglePostHandler();
+    if (slug) getSinglePostHandler();
   }, [slug]);
   const getSinglePostHandler = async () => {
     const res = await fetch(`http://localhost:3000/api/posts/${slug}`);
@@ -45,28 +45,35 @@ const SingleBlogPage = () => {
               >
                 {post?.user.name}
               </span>
-              <span className={classes.text}>{post?.createdAt.substring(0, 10)}</span>
+              <span className={classes.text}>
+                {post?.createdAt.substring(0, 10)}
+              </span>
             </div>
           </div>
         </div>
         {post?.img && (
           <figure className="flex-1 h-[350px] relative max-lg:hidden">
             <Image
-              className="object-cover"
-              src={"/images" + post?.img || post?.img}
+              className={
+                post?.img.startsWith("http") ? "object-contain" : "object-cover"
+              }
+              src={
+                post?.img.startsWith("http") ? post?.img : "/images" + post?.img
+              }
               alt="p1"
               fill
             />
           </figure>
         )}
       </div>
+      {post?.views && <div className="text-xl max-sm:mt-5"># views: {post?.views}</div>}
+      
       <div className="flex gap-[50px] mt-[60px]">
         <div className={classes.content}>
           <div
             className="font-light text-base sm:text-lg 2xl:text-xl mb-5"
             dangerouslySetInnerHTML={{ __html: post?.desc }}
           />
-
           <div>
             <Comments slug={slug} />
           </div>
