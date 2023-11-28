@@ -1,0 +1,7 @@
+.menu_text {
+    flex: 4;
+}
+
+.menu_text h4 {
+    color: var(--light-text);
+}
