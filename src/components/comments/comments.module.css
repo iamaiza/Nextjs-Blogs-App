@@ -1,0 +1,11 @@
+.title {
+    color: var(--light-text);
+}
+
+.user span {
+    color: var(--light-text);
+}
+
+.textarea {
+    background-color: var(--light-bg);
+}
