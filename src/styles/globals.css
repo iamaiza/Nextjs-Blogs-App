@@ -25,3 +25,7 @@
     font-size: 28px;
     color: #b3b3b1;
 }
+.quill > .ql-container > .ql-editor p {
+    font-size: 18px;
+    background-color: transparent;
+}
